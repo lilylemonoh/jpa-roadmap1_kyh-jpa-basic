@@ -61,10 +61,14 @@ public class JpaMain {
 //            em.persist(member2);
 
 //            System.out.println("===================");
-            Member member = em.find(Member.class, 101L);
-            member.setName("ZZZZZZZZZZZZZ");
+//            Member member = em.find(Member.class, 101L);
+//            member.setName("ZZZZZZZZZZZZZ");
+            Member member = new Member(200L, "member200");
+            em.persist(member);
 
+            em.flush();
 
+            System.out.println("===========");
             tx.commit();
         } catch (Exception e) {
             tx.rollback();
