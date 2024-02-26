@@ -11,6 +11,7 @@ public class Member {
 
 //    @Column(name = "username")
     private String name;
+    private int age;
 
     public Member(Long id, String name) {
         this.id = id;
