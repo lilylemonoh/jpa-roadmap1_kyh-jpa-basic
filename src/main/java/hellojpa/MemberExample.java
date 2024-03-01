@@ -12,20 +12,13 @@ public class MemberExample {
     @Column(name = "USERNAME")
     private String username;
 
-//    @Column(name = "TEAM_ID")
-//    private Long teamId;
-
     @ManyToOne
-    @JoinColumn(name = "TEAM_ID")
+    @JoinColumn(name = "TEAM_ID", insertable = false, updatable = false)
+    // 이런 매핑은 공식적으로 존재하지 않음
+    // 읽기 전용 필드를 사용해서 양방향처럼 사용하는 방법
+    // 다대일 양방향을 사용하자
     private Team team;
 
-    public Team getTeam() {
-        return team;
-    }
-
-    public void setTeam(Team team) {
-        this.team = team;
-    }
 
     public Long getId() {
         return id;
@@ -43,12 +36,4 @@ public class MemberExample {
         this.username = username;
     }
 
-    @Override
-    public String toString() {
-        return "MemberExample{" +
-                "id=" + id +
-                ", username='" + username + '\'' +
-                ", team=" + team +
-                '}';
-    }
 }

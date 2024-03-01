@@ -13,8 +13,17 @@ public class Team {
     private Long id;
     private String name;
 
-    @OneToMany(mappedBy = "team")
+    @OneToMany
+    @JoinColumn(name = "TEAM_ID")
     private List<MemberExample> members = new ArrayList<>();
+
+    public List<MemberExample> getMembers() {
+        return members;
+    }
+
+    public void setMembers(List<MemberExample> members) {
+        this.members = members;
+    }
 
     public Long getId() {
         return id;
