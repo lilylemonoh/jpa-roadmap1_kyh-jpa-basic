@@ -3,6 +3,8 @@ package jpabook.jpashop.JpaMain;
 import hellojpa.MemberExample;
 import hellojpa.Team;
 import jakarta.persistence.*;
+import jpabook.jpashop.domain.Order;
+import jpabook.jpashop.domain.OrderItem;
 
 import java.util.List;
 
@@ -18,30 +20,14 @@ public class JpaMain {
         tx.begin();
 
         try {
-            Team team = new Team();
-            team.setName("TeamA");
-            // 역방향(주인이 아닌 방향)만 연관관계 설정
-//            team.getMembers().add(member);
-            em.persist(team);
+           Order order = new Order();
+//           order.addOrderItem(new OrderItem());
+            em.persist(order);
 
-            MemberExample member = new MemberExample();
-            member.setUsername("member1");
-//            member.setTeam(team);
-            em.persist(member);
+            OrderItem orderItem = new OrderItem();
+            orderItem.setOrder(order);
 
-//            team.getMembers().add(member); // 연관관계 편의 메소드를 MemberExample 세터에 생성하였음.
-            team.addMember(member);
-
-            em.flush();
-            em.clear();
-
-            Team findTeam = em.find(Team.class, team.getId());
-            List<MemberExample> members = findTeam.getMembers();
-
-            for (MemberExample m : members) {
-                System.out.println("m = " + m.getUsername());
-            }
-
+            em.persist(orderItem);
 
             tx.commit();
         } catch (Exception e) {
