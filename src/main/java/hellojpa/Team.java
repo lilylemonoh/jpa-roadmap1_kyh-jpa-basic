@@ -39,4 +39,18 @@ public class Team {
     public void setName(String name) {
         this.name = name;
     }
+
+    public void addMember(MemberExample member) {
+        member.setTeam(this);
+        members.add(member);
+    }
+
+    @Override
+    public String toString() {
+        return "Team{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", members=" + members +
+                '}';
+    }
 }

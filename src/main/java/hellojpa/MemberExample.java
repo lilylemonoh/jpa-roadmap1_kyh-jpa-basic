@@ -27,6 +27,11 @@ public class MemberExample {
         this.team = team;
     }
 
+//    public void changeTeam(Team team) {
+//        this.team = team;
+//        team.getMembers().add(this);
+//    }
+
     public Long getId() {
         return id;
     }
@@ -43,5 +48,12 @@ public class MemberExample {
         this.username = username;
     }
 
-
+    @Override
+    public String toString() {
+        return "MemberExample{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", team=" + team +
+                '}';
+    }
 }
