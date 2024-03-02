@@ -5,7 +5,7 @@ import jakarta.persistence.Entity;
 
 @Entity
 @DiscriminatorValue("B")
-public class Book extends ItemExample {
+public class BookExample extends ItemExample {
     private String author;
     private String isbn;
 }

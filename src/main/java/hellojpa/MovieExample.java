@@ -5,7 +5,7 @@ import jakarta.persistence.Entity;
 
 @Entity
 @DiscriminatorValue("M")
-public class Movie extends ItemExample {
+public class MovieExample extends ItemExample {
     private String director;
     private String actor;
 

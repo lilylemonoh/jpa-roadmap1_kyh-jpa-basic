@@ -6,7 +6,7 @@ import jakarta.persistence.MappedSuperclass;
 import java.time.LocalDateTime;
 
 @MappedSuperclass // 매핑 정보만 받는 슈퍼 클래스
-public abstract class BaseEntity {
+public abstract class BaseEntityExample {
     /**
      * 1. 상속관계 매핑 X
      * 2. 엔티티 X, 테이블과 매핑 X
