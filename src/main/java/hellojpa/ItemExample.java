@@ -3,9 +3,9 @@ package hellojpa;
 import jakarta.persistence.*;
 
 @Entity
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 //@DiscriminatorColumn // DTYPE 컬럼 생성(디폴트, 이름 바꿀 수 있음) // 단일 테이블 전략에는 설정하지 않아도 필수로 생성됨
-public class ItemExample {
+public abstract class ItemExample {
 
     @Id @GeneratedValue
     private Long id;
