@@ -27,7 +27,7 @@ public class MemberExample {
     private Locker locker;
 
     @OneToMany(mappedBy = "member")
-    private List<Orders> memberProducts = new ArrayList<>();
+    private List<MemberProduct> memberProducts = new ArrayList<>();
 
     public Long getId() {
         return id;
