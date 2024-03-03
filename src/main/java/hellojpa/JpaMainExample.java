@@ -18,36 +18,21 @@ public class JpaMainExample {
           tx.begin();
 
           try {
-              Team team = new Team();
-              team.setName("teamA");
-              em.persist(team);
+              Child child1 = new Child();
+              Child child2 = new Child();
 
-              Team teamB = new Team();
-              teamB.setName("teamB");
-              em.persist(teamB);
+              Parent parent = new Parent();
+              parent.addChild(child1);
+              parent.addChild(child2);
 
-              MemberExample member1 = new MemberExample();
-              member1.setUsername("member1");
-              member1.setTeam(team);
-              em.persist(member1);
-
-              MemberExample member2 = new MemberExample();
-              member2.setUsername("member2");
-              member2.setTeam(teamB);
-              em.persist(member2);
+              em.persist(parent);
 
               em.flush();
               em.clear();
 
-//              MemberExample m  = em.find(MemberExample.class, member1.getId());
-
-              List<MemberExample> members = em.createQuery(
-                      "select m from MemberExample m join fetch m.team",
-                              MemberExample.class)
-                      .getResultList();
-
-              // SQL: select * from Member
-              // SQL: select * from Team where TEAM_ID = xxx
+              Parent findParent = em.find(Parent.class, parent.getId());
+//              findParent.getChildList().remove(0);
+              em.remove(findParent);
 
               tx.commit();
           } catch (Exception e) {
