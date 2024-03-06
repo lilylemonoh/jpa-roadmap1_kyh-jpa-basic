@@ -122,3 +122,8 @@
 * 참고 : Integer, String은 자바가 제공하는 대표적인 불변객체
 * **결론 : 상황에 따라 setter를 제거하거나, setter를 private method로 만든다.**
 ---
+## 값 타입의 비교
+* 동일성(identity) : 인스턴스의 참조 값을 비교, == 사용
+* 동등성(equivalence) : 인스턴스의 값을 비교, equals() 사용
+* 값 타입은 a.equals(b)를 사용해서 동등성 비교를 해야 함
+* 값 타입의 equals() 메소드를 적절하게 재정의(주로 모든 필드 사용)

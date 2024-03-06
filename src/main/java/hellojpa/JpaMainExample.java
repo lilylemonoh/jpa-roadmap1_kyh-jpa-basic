@@ -18,21 +18,11 @@ public class JpaMainExample {
           tx.begin();
 
           try {
-              Address address = new Address("city", "street", "zipcode");
+              Address address1 = new Address("city", "street", "zipcode");
+              Address address2 = new Address("city", "street", "zipcode");
 
-              MemberExample member = new MemberExample();
-              member.setUsername("member1");
-              member.setHomeAddress(address);
-              em.persist(member);
-
-              Address newAddress = new Address("NewCity", address.getStreet(), address.getZipcode());
-              member.setHomeAddress(newAddress);
-
-
-              //
-//               member.getHomeAddress().setCity("newCity");
-               // 임베디드
-
+              System.out.println("address1 == address2: " + (address1 == address2));
+              System.out.println("address1 equals address2: " + (address1.equals(address2)));
 
               tx.commit();
           } catch (Exception e) {
