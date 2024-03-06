@@ -1,11 +1,11 @@
 package hellojpa;
 
 import jakarta.persistence.Embeddable;
+import jakarta.persistence.Table;
 
 import java.util.Objects;
 
 @Embeddable
-
 public class Address {
     private String city;
     private String zipcode;
