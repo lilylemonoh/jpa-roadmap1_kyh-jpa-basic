@@ -20,28 +20,24 @@ public class JpqlMain {
             member.setAge(10);
             em.persist(member);
 
-            Member result = em.createQuery(
-                            "select m from Member m" +
-                                    " where m.username = :username", Member.class)
-                    .setParameter("username", "member1")
-                    .getSingleResult();
+            em.flush();
+            em.clear();
 
-            System.out.println("result.getUsername() = " + result.getUsername());
+            List<MemberDto> result = em.createQuery(
+                            "select new jpql.MemberDto(m.username, m.age) from Member m",
+                            MemberDto.class)
+                    .getResultList();
 
-//          타입 모를 때
-//            Query query1 = em.createQuery("select m.username, m.age from Member m";
+            MemberDto memberDto = result.get(0);
+            System.out.println("memberDto = " + memberDto.getUsername());
+            System.out.println("memberDto = " + memberDto.getAge());
 
-            // 결과가 여러개 -> 결과가 없으면 빈 리스트 반환
-//            List<Member> resultList = query.getResultList();
-//
-//            for (Member member1 : resultList) {
-//                System.out.println("member1 = " + member1);
-//            }
-//
-//            // 결과가 1개
-//            Member result = query.getSingleResult();
+//            Object o = resultList.get(0);
+//            Object[] result = (Object[]) o;
+//            System.out.println("username = " + result[0]);
+//            System.out.println("age = " + result[1]);
 
-
+//            Object[] result = resultList.get(0);
 
             tx.commit();
         } catch (Exception e) {
