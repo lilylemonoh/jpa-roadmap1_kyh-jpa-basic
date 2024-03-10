@@ -41,23 +41,13 @@ public class JpqlMain {
             em.flush();
             em.clear();
 
-            String query = "select m from Member m where m.id = :memberId";
-            Member result = em.createQuery(query, Member.class)
-                    .setParameter("memberId", member1.getId())
-                            .getSingleResult();
-            System.out.println("result = " + result);
+            List<Member> resultList = em.createNamedQuery("Member.findByUsername", Member.class)
+                    .setParameter("username", "회원1")
+                    .getResultList();
 
-//            for (Team team : result) {
-//                System.out.println("team = " + team.getName() + "|members =" + team.getMembers().size());
-//                for (Member member: team.getMembers()) {
-//                    System.out.println("member = " + member);
-//                }
-                // 회원1, 팀A(SQL)
-                // 회원2, 팀A(1차캐시)
-                // 회원3, 팀B(SQL)
-
-                // 회원 100명 -> N + 1
-//            }
+            for (Member member : resultList) {
+                System.out.println("member = " + member);
+            }
 
             tx.commit();
         } catch (Exception e) {
