@@ -183,3 +183,14 @@
 * query.getSingleResult(): 결과가 정확히 하나, 단일 객체 반환
   * 결과가 없으면: javax.persistence.NoResultException
   * 둘 이상이면: javax.persistence.NonUniqueResultException
+
+---
+## 조인 대상 필터링
+* 예) 회원과 팀을 조인하면서, 팀 이름이 A인 팀만 조인
+* JPQL: SELECT m, t FROM Member m LEFT JOIN m.team t on t.name ='A'
+* SQL: SELECT m.*, t.* FROM Member m LEFT JOIN Team t ON m.Team_ID=t.id and t.name='A'
+
+## 연관관계 없는 엔티티 외부 조인
+* 예) 회원의 이름과 팀의 이름이 같은 대상 외부 조인
+* JPQL: SELECT m,t FROM Member m LEFT JOIN TEAM t on m.username = t.name
+* SQL: SELECT m.*, t.* FROM member m LEFT JOIN Team t ON m.username = t.name
