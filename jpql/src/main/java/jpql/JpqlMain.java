@@ -41,24 +41,23 @@ public class JpqlMain {
             em.flush();
             em.clear();
 
-            String query = "select distinct t from Team t join fetch t.members";
-            List<Team> result = em.createQuery(query, Team.class)
-                    .setFirstResult(0)
-                    .setMaxResults(1)
-                    .getResultList();
-            System.out.println("result = " + result.size());
+            String query = "select m from Member m where m.id = :memberId";
+            Member result = em.createQuery(query, Member.class)
+                    .setParameter("memberId", member1.getId())
+                            .getSingleResult();
+            System.out.println("result = " + result);
 
-            for (Team team : result) {
-                System.out.println("team = " + team.getName() + "|members =" + team.getMembers().size());
-                for (Member member: team.getMembers()) {
-                    System.out.println("member = " + member);
-                }
+//            for (Team team : result) {
+//                System.out.println("team = " + team.getName() + "|members =" + team.getMembers().size());
+//                for (Member member: team.getMembers()) {
+//                    System.out.println("member = " + member);
+//                }
                 // 회원1, 팀A(SQL)
                 // 회원2, 팀A(1차캐시)
                 // 회원3, 팀B(SQL)
 
                 // 회원 100명 -> N + 1
-            }
+//            }
 
             tx.commit();
         } catch (Exception e) {

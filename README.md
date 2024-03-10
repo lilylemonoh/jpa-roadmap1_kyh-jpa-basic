@@ -4,6 +4,7 @@
 
 **[Inflearn - 강의 링크](https://www.inflearn.com/course/ORM-JPA-Basic)**
 
+학습 기간: 2024/2/19~2024/3/
 ## JPA (Java Persistence API)
 
 * 자바 ORM 표준인 JPA는 SQL 작성 없이도 객체를 데이터베이스에 직접 저장할 수 있게 함
