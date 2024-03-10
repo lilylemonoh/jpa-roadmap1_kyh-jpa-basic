@@ -21,6 +21,7 @@ public class JpqlMain {
             Member member = new Member();
             member.setUsername("teamA");
             member.setAge(10);
+            member.setType(MemberType.ADMIN);
 
             member.setTeam(team);
 
@@ -29,8 +30,10 @@ public class JpqlMain {
             em.flush();
             em.clear();
 
-            String query = "select (select avb(m1.age) From Member m1) as avgAge from Member m left join Team t on m.username = t.name";
-            List<Member> result = em.createQuery(query, Member.class)
+            String query = "select m.username, 'HELLO', TRUE from Member m " +
+                    "where m.type = :userType";
+            List<Object[]> result = em.createQuery(query)
+                    .setParameter("userType", MemberType.ADMIN)
                     .getResultList();
 
             System.out.println("result = " + result.size());

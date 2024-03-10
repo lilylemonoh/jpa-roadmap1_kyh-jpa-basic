@@ -199,3 +199,10 @@
 ## JPA 서브 쿼리 한계
 * FROM 절의 서브 쿼리는 현재 JPQL에서 불가능
 * 조인으로 풀 수 있으면 풀어서 해결
+---
+## JPQL 타입 표현
+* 문자: "HELLO", 'She''s'
+* 숫자: 10L, 10D, 10F
+* Boolean: TRUE, FALSE
+* ENUM: jpql.MemberType.Admin (패키지명 포함)
+* 엔티티 타입: TYPE(m) = Member (상속 관계에서 사용)
