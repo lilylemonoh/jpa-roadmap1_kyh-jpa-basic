@@ -2,6 +2,7 @@ package jpql;
 
 import jakarta.persistence.*;
 
+import java.util.Collection;
 import java.util.List;
 
 public class JpqlMain {
@@ -30,12 +31,12 @@ public class JpqlMain {
             em.flush();
             em.clear();
 
-            String query = "select function('group_concat', m.username) from Member m";
-            List<String> result = em.createQuery(query, String.class)
+            String query = "select m.username from Team t join  t.members m";
+            Collection result = em.createQuery(query, Collection.class)
                     .getResultList();
 
-            for (String s : result) {
-                System.out.println("s = " + s);
+            for (Object o : result) {
+                System.out.println("o = " + o);
             }
             tx.commit();
         } catch (Exception e) {
