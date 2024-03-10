@@ -194,3 +194,8 @@
 * 예) 회원의 이름과 팀의 이름이 같은 대상 외부 조인
 * JPQL: SELECT m,t FROM Member m LEFT JOIN TEAM t on m.username = t.name
 * SQL: SELECT m.*, t.* FROM member m LEFT JOIN Team t ON m.username = t.name
+---
+
+## JPA 서브 쿼리 한계
+* FROM 절의 서브 쿼리는 현재 JPQL에서 불가능
+* 조인으로 풀 수 있으면 풀어서 해결
