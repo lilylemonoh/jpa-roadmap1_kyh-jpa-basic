@@ -40,14 +40,16 @@ public class JpqlMain {
 
             em.flush();
             em.clear();
+            
+            // FLUSH 자동 호출 commit , query
 
-            List<Member> resultList = em.createNamedQuery("Member.findByUsername", Member.class)
-                    .setParameter("username", "회원1")
-                    .getResultList();
+            int resultCount = em.createQuery("update Member m set m.age = 20")
+                    .executeUpdate();
 
-            for (Member member : resultList) {
-                System.out.println("member = " + member);
-            }
+            em.clear();
+            Member findMember = em.find(Member.class, member1.getId());
+            System.out.println("findMember = " + findMember.getAge());
+
 
             tx.commit();
         } catch (Exception e) {
